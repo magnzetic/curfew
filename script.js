@@ -4,6 +4,30 @@ document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.getElementById("startOverlay");
   const triggerOverlay = document.getElementById("triggerOverlay");
 
+  const audioIds = [
+    "bang", "crowd", "choke", "squelch", "mesin", "breath1", "breath2", "pullkey", "space", "scratch", "sigh",
+    "downstair", "tap", "switches", "blanket", "run1", "thunder", "truk", "nans", "crash", "break", "choke2",
+    "cough2", "cough1", "squeak", "squeak2", "cough3", "unlock", "run2", "run3", "slam", "knock", "thunder2"
+  ];
+  const bgRain = document.getElementById("bgRain");
+  const audioMap = {};
+
+  // 🔒 Preload and mute all audio on DOM ready
+  [...audioIds, "bgRain"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.muted = true;
+      el.volume = 1;
+      el.pause();
+      el.currentTime = 0;
+      audioMap[id] = el;
+      el.play().then(() => {
+        el.pause();
+        el.currentTime = 0;
+      }).catch(() => {});
+    }
+  });
+
   nextBtn.addEventListener("click", () => {
     overlay.classList.add("hidden");
     triggerOverlay.classList.remove("hidden");
@@ -11,13 +35,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   startBtn.addEventListener("click", () => {
     triggerOverlay.classList.add("hidden");
-    playBgRain();
-    startStory();
-    attachTouchTriggers();
+    if (bgRain) {
+      bgRain.muted = false;
+      bgRain.loop = true;
+      bgRain.volume = 0.7;
+      bgRain.play().catch(err => console.error("bgRain error:", err));
+    }
+    startStory(audioMap);
+    attachTouchTriggers(audioMap);
   });
 });
-
-
 
 function fadeVolume(audio, targetVolume, duration = 1000) {
   const steps = 20;
@@ -38,76 +65,27 @@ function fadeVolume(audio, targetVolume, duration = 1000) {
   }, stepTime);
 }
 
-function playBgRain() {
-  const bgRain = document.getElementById("bgRain");
-
-  if (bgRain) {
-    bgRain.volume = 0.7;
-    bgRain.loop = true;
-    bgRain.currentTime = 0;
-
-    bgRain.play()
-      .then(() => {
-        console.log("bgRain is playing!");
-        console.log("bgRain volume:", bgRain.volume);
-      })
-      .catch((err) => {
-        console.error("bgRain play error:", err);
-      });
-  }
-}
-
-function attachTouchTriggers() {
+function attachTouchTriggers(audioMap) {
   const paragraphs = document.querySelectorAll(".story-paragraph");
 
   paragraphs.forEach(paragraph => {
     paragraph.addEventListener("touchstart", () => {
       const audioId = paragraph.getAttribute("data-audio");
       if (audioId) {
-        const audioElement = document.getElementById(audioId);
-        if (audioElement && audioElement.paused) {
-          audioElement.currentTime = 0;
-          audioElement.play();
+        const audio = audioMap[audioId];
+        if (audio && audio.paused) {
+          audio.muted = false;
+          audio.currentTime = 0;
+          audio.play().catch(err => console.warn("Touch audio fail:", err));
         }
       }
     });
   });
 }
 
-
-function startStory() {
-  const audioIds = [
-    "bang", "crowd", "choke", "squelch", "mesin", "breath1", "breath2", "pullkey", "space", "scratch", "sigh", "downstair", "tap", "switches", "blanket", "run1", "thunder", "truk", "nans", "crash", "break", "choke2", "cough2", "cough1", "squeak", "squeak2", "cough3", "unlock", "run2", "run3", "slam", "knock", "thunder2"
-  ];
-  const bgRain = document.getElementById("bgRain");
+function startStory(audioMap) {
   const playedSet = new Set();
-
-  audioIds.forEach((id) => {
-    const audio = document.getElementById(id);
-    if (audio) {
-      audio.play().then(() => {
-        audio.pause();
-        audio.currentTime = 0;
-      })
-    }
-  });
-
-  bang.volume = 0.8;
-  if (crowd) crowd.volume = 0.5;
-  if (choke) choke.volume = 0.2;
-  if (squelch) squelch.volume = 0.5;
-  if (mesin) mesin.volume = 0.5;
-  if (breath1) breath1.volume = 0.5;
-  if (breath2) breath2.volume = 0.3;
-  if (pullkey) pullkey.volume = 0.5;
-
-  if (bgRain && bgRain.paused) {
-    const volumeAttr = bgRain.getAttribute("volume");
-    bgRain.volume = volumeAttr ? parseFloat(volumeAttr) : 0.7;
-    bgRain.loop = true;
-    bgRain.play();
-  }
-
+  const bgRain = audioMap["bgRain"];
   const storyContainer = document.querySelector(".story-container");
 
     const storyData = [
@@ -223,24 +201,15 @@ function startStory() {
   
     storyData.forEach((entry) => {
       const p = document.createElement("p");
-      p.textContent = entry.text;
       p.classList.add("story-paragraph");
-  
-      if (entry.volume !== undefined) {
-        p.setAttribute("data-volume", entry.volume);
-      }
-
-      if (entry.isHTML) {
-        p.innerHTML = entry.text;
-      } else {
-        p.textContent = entry.text;
-      }
   
       if (entry.align === "center") p.classList.add("center-paragraph");
       if (entry.audio) p.setAttribute("data-autoplay", entry.audio);
       if (entry.dataDarkMode) p.setAttribute("data-darkmode", "true");
       if (entry.dataLightMode) p.setAttribute("data-lightmode", "true");
+      if (entry.volume !== undefined) p.setAttribute("data-volume", entry.volume);
   
+      p.textContent = entry.text;
       storyContainer.appendChild(p);
     });
   
@@ -254,6 +223,7 @@ function startStory() {
         const isDarkTrigger = el.getAttribute("data-darkmode") === "true";
         const isLightTrigger = el.getAttribute("data-lightmode") === "true";
   
+        // 🎚 Fade background rain
         if (volumeAttr !== null && bgRain) {
           const newVolume = parseFloat(volumeAttr);
           if (!isNaN(newVolume)) {
@@ -261,9 +231,11 @@ function startStory() {
           }
         }
   
+        // 🔊 Trigger SFX
         if (audioId && !playedSet.has(audioId)) {
-          const audioEl = document.getElementById(audioId);
+          const audioEl = audioMap[audioId];
           if (audioEl) {
+            audioEl.muted = false;
             audioEl.currentTime = 0;
             audioEl.play().catch((e) => console.warn("Audio failed:", e));
             playedSet.add(audioId);
