@@ -1,0 +1,129 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom, #ffffff, #bfbfbf);
+  color: #000000;
+  transition: background 2s ease;
+  padding: 2rem;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.story-container {
+  max-width: 800px;
+  margin: 0 auto;
+  backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  text-align: justify;
+  line-height: 1.5;
+}
+
+.title {
+  font-family: 'Creepster';
+  text-align: center;
+  font-size: 3.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.author {
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+
+#startButton {
+    display: block;
+    margin: 2rem auto;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 10px;
+    background: #000000a7;
+    color: white;
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+  }
+  
+  #startButton.hidden {
+    display: none;
+  }
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+  
+  .overlay-content {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: justify;
+    color: black;
+    max-width: 500px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    backdrop-filter: blur(15px);
+  }
+  
+  #startButton:hover {
+    background: #b3b3b355;
+    color: black;
+  }
+  
+  .hidden {
+    display: none !important;
+  }
+  
+  #nextButton {
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+    background: #000000a7;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  #nextButton:hover {
+    background: #b3b3b355;
+    color: black;
+  }
+
+  .story-paragraph:empty {
+    display: block;
+    height: 2rem; /* Adjust to your liking */
+  }
+
+  .center-paragraph {
+    text-align: center;
+  }
+  
+  body.dark-mode {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom, #2e2e2e, #000000);
+  color: #000000;
+  transition: background 2s ease;
+  padding: 2rem;
+  min-height: 100vh;
+  overflow-x: hidden;
+  }
+  
+  body.dark-mode .story-paragraph {
+    color: #cccccc;
+  }
+  

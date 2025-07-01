@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Curfew - Nanami Kento</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href='https://fonts.googleapis.com/css?family=Creepster' rel='stylesheet'>
+</head>
+<body>
+  <!-- First Overlay: Disclaimer -->
+<div id="startOverlay" class="overlay">
+  <div class="overlay-content">
+    <h1 style="text-align: center; font-family: 'Creepster';">Curfew</h1>
+    <h3 style="text-align: center;">DISCLAIMER:</h3>
+    <ul>
+      <li>I don't own Nanami Kento, the character belongs to Gege Akutami.</li>
+      <li>Might be OOC, 100% FICTION.</li>
+      <li>All assets are from YouTube.</li>
+      <li>Apologies if there are some human errors.</li>
+      <li>This story contains sound effects and visual transitions that might be intense or emotionally sensitive to some readers.</li>
+      <li>Please <b>read the trigger warning</b> after this.</li>
+    </ul>
+    <div style="text-align: right;">
+      <button id="nextButton">Next</button>
+    </div>
+  </div>
+</div>
+
+<!-- Second Overlay: Trigger Warning -->
+<div id="triggerOverlay" class="overlay hidden">
+  <div class="overlay-content">
+    <h3 style="text-align: center;">Trigger Warning</h3>
+    <ul>
+      <li>Deaths,</li>
+      <li>Graphic violence,</li>
+      <li>Physical abuse,</li>
+      <li>Blood,</li>
+      <li>Suicidal thoughts, and</li>
+      <li>Slight gore (broken bones, dead bodies).</li>
+    </ul>
+    <p style="text-align: center;">The sound effects and visual transitions are triggered by scroll, so please <b>scroll mindfully</b>.</p>
+    <p style="text-align: center;">Also, ensure your volume on your browser is at a comfortable level.</p>
+    <div style="text-align: center;">
+      <button id="startButton">Start</button>
+    </div>
+  </div>
+</div>
+
+  <!-- Story Content -->
+  <div class="story-container">
+    <h1 class="title">Curfew</h1>
+    <p class="author">a Jujutsu Kaisen fan fiction by chocomict.</p>
+    <!-- Dynamic paragraphs from JavaScript will be injected here -->
+  </div>
+
+  <!-- Audio Assets -->
+  <audio id="bgRain" volume="0.7" loop>
+    <source src="sounds/rain.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="bang">
+    <source src="sounds/bang.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="space">
+    <source src="sounds/space.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="scratch">
+    <source src="sounds/scratch.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="sigh">
+    <source src="sounds/sigh.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="downstair">
+    <source src="sounds/downstair.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="switches">
+    <source src="sounds/switches.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="blanket">
+    <source src="sounds/blanket.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="crowd">
+    <source src="sounds/crowd.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="tap">
+    <source src="sounds/tap.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="run1">
+    <source src="sounds/run1.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="thunder">
+    <source src="sounds/thunder.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="thunder2">
+    <source src="sounds/thunder2.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="nans">
+    <source src="sounds/nans.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="truk">
+    <source src="sounds/truk.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="crash">
+    <source src="sounds/crash.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="break">
+    <source src="sounds/break.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="choke">
+    <source src="sounds/choke.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="squelch">
+    <source src="sounds/squelch.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="choke2">
+    <source src="sounds/choke2.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="pullkey">
+    <source src="sounds/pullkey.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="run2">
+    <source src="sounds/run2.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="run3">
+    <source src="sounds/run3.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="cough1">
+    <source src="sounds/cough1.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="cough2">
+    <source src="sounds/cough2.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="cough3">
+    <source src="sounds/cough3.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="slam">
+    <source src="sounds/slam.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="unlock">
+    <source src="sounds/unlock.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="knock">
+    <source src="sounds/knock.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="breath1">
+    <source src="sounds/breath1.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="breath2">
+    <source src="sounds/breath2.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="squeak">
+    <source src="sounds/squeak.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="squeak2">
+    <source src="sounds/squeak2.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="mesin">
+    <source src="sounds/mesin.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- JS Logic -->
+  <script src="script.js"></script>
+  <p style="font-size: 8pt; text-align: center;">written and developed by chocomict on x (chase/ces).</p>
+</body>
+</html>
