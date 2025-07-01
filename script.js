@@ -56,6 +56,9 @@ function attachTouchTriggers() {
 
 
 function startStory() {
+  const audioIds = [
+    "bgRain", "bang", "crowd", "choke", "squelch", "mesin", "breath1", "breath2", "pullkey"
+  ];
   const bgRain = document.getElementById("bgRain");
   const bang = document.getElementById("bang");
   const crowd = document.getElementById("crowd");
