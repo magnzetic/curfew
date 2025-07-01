@@ -77,23 +77,55 @@ function attachTouchTriggers() {
 
 function startStory() {
   const audioIds = [
-    "bang", "crowd", "choke", "squelch", "mesin", "breath1", "breath2", "pullkey", "space", "scratch", "sigh", "downstair", "tap", "switches", "blanket", "run1", "thunder", "truk", "nans", "crash", "break", "choke2", "cough2", "cough1", "squeak", "squeak2", "cough3", "unlock", "run2", "run3", "slam", "knock", "thunder2"
+    "bang", "crowd", "choke", "squelch", "mesin", "breath1", "breath2", "pullkey",
+    "space", "scratch", "sigh", "downstair", "tap", "switches", "blanket", "run1",
+    "thunder", "truk", "nans", "crash", "break", "choke2", "cough2", "cough1",
+    "squeak", "squeak2", "cough3", "unlock", "run2", "run3", "slam", "knock", "thunder2"
   ];
+  
   const bgRain = document.getElementById("bgRain");
   const playedSet = new Set();
-
+  
+  // Store all audio elements in a map
+  const audioMap = {};
+  
   audioIds.forEach((id) => {
     const audio = document.getElementById(id);
     if (audio) {
+      audio.muted = true;         // Start muted
+      audio.pause();
+      audio.currentTime = 0;
+      audioMap[id] = audio;
+  
+      // Unlock audio for mobile (without actual play)
       audio.play().then(() => {
         audio.pause();
-        audio.muted = true;
         audio.currentTime = 0;
-      }).catch((err) => {
-        console.warn(`Failed to warm up ${id}:`, err);
+      }).catch(() => {
+        // Ignore autoplay prevention errors
       });
     }
   });
+  
+  // Prepare bgRain the same way
+  bgRain.muted = true;
+  bgRain.pause();
+  bgRain.currentTime = 0;
+  bgRain.play().then(() => {
+    bgRain.pause();
+    bgRain.currentTime = 0;
+  }).catch(() => {
+    // Ignore autoplay prevention errors
+  });
+  
+  // Start button logic (you must already have a button with id="startButton")
+  document.getElementById("startButton").addEventListener("click", () => {
+    bgRain.muted = false;
+    bgRain.volume = 1;
+    bgRain.loop = true;
+    bgRain.play();
+  });
+  
 
   bang.volume = 0.8;
   if (crowd) crowd.volume = 0.5;
