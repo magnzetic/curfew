@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const bgRain = document.getElementById("bgRain");
   const audioMap = {};
 
-  // 🔒 Preload and mute all audio on DOM ready
   [...audioIds, "bgRain"].forEach(id => {
     const el = document.getElementById(id);
     if (el) {
@@ -97,8 +96,8 @@ function startStory(audioMap) {
       { text: "." , align: "center"},
       { text: "." , align: "center"},
       { text: ".", align: "center" },
-      { text: "." , align: "center", audio: "bang" },
-      { text: "\"Akiko!\" Suara parau itu datang dari balik pintu sedetik setelah gedoran yang berhasil membuat si pemilik nama hampir terjatuh dari kasurnya. \"Kau sudah mengunci pintu?\"" },
+      { text: "." , align: "center"},
+      { text: "\"Akiko!\" Suara parau itu datang dari balik pintu sedetik setelah gedoran yang berhasil membuat si pemilik nama hampir terjatuh dari kasurnya. \"Kau sudah mengunci pintu?\"", audio: "bang"  },
       { text: "." , align: "center"},
       { text: ".", align: "center" },
       { text: ".", align: "center" },
@@ -132,12 +131,15 @@ function startStory(audioMap) {
       { text: "Bukan lagi duduk di ruang tunggu, tetapi duduk di kursi penumpang mobil yang terletak tepat di belakang kursi pengemudi. Otot pada iris mata Akiko membesarkan pupilnya saat terang di ruang tunggu tadi berubah menjadi gelapnya badai di malam hari.", audio: "thunder", volume: 0.8},
       { text: "." , align: "center"},
       { text: ".", align: "center" },
-      { text: "." , align: "center", audio: "truk"},
-      { text: "Hujan lebat menyerang atap mobil sedan yang sedang menghindari truk gandeng dari arah berlawanan, derasnya air yang berjatuhan membutakan pengemudi truk hingga tak dapat melihat garis pembatas jalan. Dikejar oleh tenggat pengiriman barang adalah landasan utama dari kecepatan truk yang lebih dari seratus kilometer per jam di jalan raya. Sang pengemudi rela melakukan apa saja agar upahnya tidak dipotong, untuk memastikan anak semata wayangnya tidak kehilangan pendidikan."},
+      { text: "." , align: "center"},
+      { text: "Hujan lebat menyerang atap mobil sedan yang sedang menghindari truk gandeng dari arah berlawanan, derasnya air yang berjatuhan membutakan pengemudi truk hingga tak dapat melihat garis pembatas jalan. Dikejar oleh tenggat pengiriman barang adalah landasan utama dari kecepatan truk yang lebih dari seratus kilometer per jam di jalan raya. Sang pengemudi rela melakukan apa saja agar upahnya tidak dipotong, untuk memastikan anak semata wayangnya tidak kehilangan pendidikan.", audio: "truk"},
       { text: "." , align: "center"},
       { text: ".", align: "center" },
       { text: "." , align: "center"},
       { text: "Namun, sang pengemudi tidak menyangka bahwa ada anak tunggal lain yang juga akan kehilangan sesuatu akibat perbuatannya.", audio: "nans"},
+      { text: "." , align: "center"},
+      { text: "." , align: "center"},
+      { text: "." , align: "center"},
       { text: "." , align: "center"},
       { text: ".", align: "center" , audio: "crash"},
       { text: "." , align: "center"},
@@ -152,8 +154,8 @@ function startStory(audioMap) {
       { text: "." , align: "center"},
       { text: "." , align: "center"},
       { text: "." , align: "center"},
-      { text: ".", align: "center", audio: "cough2", volume: "0.2"},
-      { text: "Sambil terbatuk-batuk, Akiko menemukan dirinya sendiri terbaring di kasur. Selimut yang tadinya membungkus tubuhnya telah tergeletak di ujung kasur, sepertiga bagiannya sudah menyentuh lantai. Kedua kaki Akiko yang terasa dingin membantunya berdiri untuk menyalakan lampu, satu ruangan luas itu langsung menjadi terang—pupil Akiko sontak mengecil.", dataLightMode: true},
+      { text: ".", align: "center", volume: "0.2"},
+      { text: "Sambil terbatuk-batuk, Akiko menemukan dirinya sendiri terbaring di kasur. Selimut yang tadinya membungkus tubuhnya telah tergeletak di ujung kasur, sepertiga bagiannya sudah menyentuh lantai. Kedua kaki Akiko yang terasa dingin membantunya berdiri untuk menyalakan lampu, satu ruangan luas itu langsung menjadi terang—pupil Akiko sontak mengecil." , audio: "cough2" , dataLightMode: true},
       { text: "Pukul empat pagi."},
       { text: "Dengan langkah gontai, Akiko menghampiri dispenser galon air minum yang terletak di sudut kamar. Ia meletakkan gelas kosong di bawah saluran pemancur air, lalu menekan tombol untuk menarik air dari dalam galon dan menuangkannya ke gelas. Terdengar suara mesin yang menyedot sisa-sisa tetes air di dalam galon, namun yang dituangkan hanya angin belaka.", audio: "mesin"},
       { text: "\"Sialan!\" Akiko memaki takdir di sela-sela batuknya. Rasa gatal di tenggorokannya terlalu terasa serius untuk hanya diabaikan saja, ia harus segera minum air untuk mengusirnya.", audio: "cough1"},
@@ -170,8 +172,11 @@ function startStory(audioMap) {
       { text: "." , align: "center"},
       { text: "." , align: "center"},
       { text: "." , align: "center"},
-      { text: "." , align: "center", audio: "breath1"},
-      { text: "Di ruang tengah, tepat di atas permadani bermotif ala Turki kesayangan mendiang istrinya, tubuh Nanami terkulai lemas. Genangan darah menodai karpet itu, bahkan mungkin merembes ke lantai marmer di bawahnya. Kehidupan sudah meninggalkan sorot mata Nanami, tanpa sempat mengucapkan selamat tinggal kepada putrinya."},
+      { text: "." , align: "center"},
+      { text: "Di ruang tengah, tepat di atas permadani bermotif ala Turki kesayangan mendiang istrinya, tubuh Nanami terkulai lemas. Genangan darah menodai karpet itu, bahkan mungkin merembes ke lantai marmer di bawahnya. Kehidupan sudah meninggalkan sorot mata Nanami, tanpa sempat mengucapkan selamat tinggal kepada putrinya.", audio: "breath1"},
+      { text: "." , align: "center"},
+      { text: "." , align: "center"},
+      { text: "." , align: "center"},
       { text: "." , align: "center"},
       { text: "." , align: "center"},
       { text: "." , align: "center"},
@@ -223,7 +228,6 @@ function startStory(audioMap) {
         const isDarkTrigger = el.getAttribute("data-darkmode") === "true";
         const isLightTrigger = el.getAttribute("data-lightmode") === "true";
   
-        // 🎚 Fade background rain
         if (volumeAttr !== null && bgRain) {
           const newVolume = parseFloat(volumeAttr);
           if (!isNaN(newVolume)) {
@@ -231,7 +235,6 @@ function startStory(audioMap) {
           }
         }
   
-        // 🔊 Trigger SFX
         if (audioId && !playedSet.has(audioId)) {
           const audioEl = audioMap[audioId];
           if (audioEl) {
