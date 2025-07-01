@@ -10,10 +10,14 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   startBtn.addEventListener("click", () => {
+    document.querySelectorAll("audio").forEach(audio => {
+      audio.muted = true;
+      audio.loop = true;
+      audio.play().then(() => audio.pause());
+    });
     triggerOverlay.classList.add("hidden");
     startStory();
   });
-});
 
 function fadeVolume(audio, targetVolume, duration = 1000) {
   const steps = 20;
