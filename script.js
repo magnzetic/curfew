@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   startBtn.addEventListener("click", () => {
     triggerOverlay.classList.add("hidden");
+    playBgRain();
     startStory();
     attachTouchTriggers();
   });
@@ -37,6 +38,25 @@ function fadeVolume(audio, targetVolume, duration = 1000) {
   }, stepTime);
 }
 
+function playBgRain() {
+  const bgRain = document.getElementById("bgRain");
+
+  if (bgRain) {
+    bgRain.volume = 0.7;
+    bgRain.loop = true;
+    bgRain.currentTime = 0;
+
+    bgRain.play()
+      .then(() => {
+        console.log("bgRain is playing!");
+        console.log("bgRain volume:", bgRain.volume);
+      })
+      .catch((err) => {
+        console.error("bgRain play error:", err);
+      });
+  }
+}
+
 function attachTouchTriggers() {
   const paragraphs = document.querySelectorAll(".story-paragraph");
 
@@ -57,7 +77,7 @@ function attachTouchTriggers() {
 
 function startStory() {
   const audioIds = [
-    "bgRain", "bang", "crowd", "choke", "squelch", "mesin", "breath1", "breath2", "pullkey"
+    "bang", "crowd", "choke", "squelch", "mesin", "breath1", "breath2", "pullkey"
   ];
   const bgRain = document.getElementById("bgRain");
   const bang = document.getElementById("bang");
@@ -67,11 +87,11 @@ function startStory() {
   audioIds.forEach((id) => {
     const audio = document.getElementById(id);
     if (audio) {
-      audio.volume = 0; // mute it temporarily
+      audio.volume = 0;
       audio.play().then(() => {
-        audio.pause(); // pause immediately after play
+        audio.pause();
         audio.currentTime = 0;
-        audio.volume = 0.5; // restore volume
+        audio.volume = 0.5;
       }).catch((err) => {
         console.warn(`Failed to warm up ${id}:`, err);
       });
