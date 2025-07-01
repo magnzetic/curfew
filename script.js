@@ -45,7 +45,22 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+function isMobile() {
+  return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+}
+
 function fadeVolume(audio, targetVolume, duration = 1000) {
+
+  if (isMobile()) {
+    if (targetVolume <= 0.05) {
+      audio.muted = true;
+    } else {
+      audio.muted = false;
+      audio.volume = Math.max(0.1, targetVolume);
+    }
+    return;
+  }
+
   const steps = 20;
   const stepTime = duration / steps;
   const startVolume = audio.volume;
@@ -212,7 +227,10 @@ function startStory(audioMap) {
       if (entry.audio) p.setAttribute("data-autoplay", entry.audio);
       if (entry.dataDarkMode) p.setAttribute("data-darkmode", "true");
       if (entry.dataLightMode) p.setAttribute("data-lightmode", "true");
-      if (entry.volume !== undefined) p.setAttribute("data-volume", entry.volume);
+      if (entry.volume !== undefined) {
+        p.setAttribute("data-volume", entry.volume);
+      }
+      
   
       p.textContent = entry.text;
       storyContainer.appendChild(p);
