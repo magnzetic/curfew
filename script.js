@@ -67,6 +67,7 @@ function attachTouchTriggers() {
         const audioElement = document.getElementById(audioId);
         if (audioElement && audioElement.paused) {
           audioElement.currentTime = 0;
+          audioElement.play();
         }
       }
     });
@@ -86,6 +87,7 @@ function startStory() {
     if (audio) {
       audio.play().then(() => {
         audio.pause();
+        audio.muted = true;
         audio.currentTime = 0;
       }).catch((err) => {
         console.warn(`Failed to warm up ${id}:`, err);
