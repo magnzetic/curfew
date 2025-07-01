@@ -64,6 +64,20 @@ function startStory() {
   const crowd = document.getElementById("crowd");
   const playedSet = new Set();
 
+  audioIds.forEach((id) => {
+    const audio = document.getElementById(id);
+    if (audio) {
+      audio.volume = 0; // mute it temporarily
+      audio.play().then(() => {
+        audio.pause(); // pause immediately after play
+        audio.currentTime = 0;
+        audio.volume = 0.5; // restore volume
+      }).catch((err) => {
+        console.warn(`Failed to warm up ${id}:`, err);
+      });
+    }
+  });
+
   bang.volume = 0.8;
   if (crowd) crowd.volume = 0.5;
   if (choke) choke.volume = 0.2;
