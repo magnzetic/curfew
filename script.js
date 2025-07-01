@@ -67,7 +67,6 @@ function attachTouchTriggers() {
         const audioElement = document.getElementById(audioId);
         if (audioElement && audioElement.paused) {
           audioElement.currentTime = 0;
-          audioElement.play();
         }
       }
     });
