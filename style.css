@@ -105,7 +105,7 @@ body {
 
   .story-paragraph:empty {
     display: block;
-    height: 2rem; /* Adjust to your liking */
+    height: 2rem;
   }
 
   .center-paragraph {
