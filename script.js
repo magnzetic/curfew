@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   startBtn.addEventListener("click", () => {
     triggerOverlay.classList.add("hidden");
     startStory();
+    attachTouchTriggers();
   });
 });
 
@@ -35,6 +36,24 @@ function fadeVolume(audio, targetVolume, duration = 1000) {
     }
   }, stepTime);
 }
+
+function attachTouchTriggers() {
+  const paragraphs = document.querySelectorAll(".story-paragraph");
+
+  paragraphs.forEach(paragraph => {
+    paragraph.addEventListener("touchstart", () => {
+      const audioId = paragraph.getAttribute("data-audio");
+      if (audioId) {
+        const audioElement = document.getElementById(audioId);
+        if (audioElement && audioElement.paused) {
+          audioElement.currentTime = 0;
+          audioElement.play();
+        }
+      }
+    });
+  });
+}
+
 
 function startStory() {
   const bgRain = document.getElementById("bgRain");
@@ -190,19 +209,6 @@ function startStory() {
       if (entry.audio) p.setAttribute("data-autoplay", entry.audio);
       if (entry.dataDarkMode) p.setAttribute("data-darkmode", "true");
       if (entry.dataLightMode) p.setAttribute("data-lightmode", "true");
-
-      if (entry.audio) {
-        p.addEventListener("touchstart", () => {
-          const audioEl = document.getElementById(entry.audio);
-          if (audioEl && !playedSet.has(entry.audio)) {
-            // Optional: volume override
-            const customVolume = parseFloat(p.getAttribute("data-volume")) || audioEl.volume;
-            audioEl.volume = customVolume;
-            audioEl.play();
-            playedSet.add(entry.audio);
-          }
-        });
-      }
   
       storyContainer.appendChild(p);
     });
