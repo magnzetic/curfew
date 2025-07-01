@@ -80,18 +80,14 @@ function startStory() {
     "bang", "crowd", "choke", "squelch", "mesin", "breath1", "breath2", "pullkey", "space", "scratch", "sigh", "downstair", "tap", "switches", "blanket", "run1", "thunder", "truk", "nans", "crash", "break", "choke2", "cough2", "cough1", "squeak", "squeak2", "cough3", "unlock", "run2", "run3", "slam", "knock", "thunder2"
   ];
   const bgRain = document.getElementById("bgRain");
-  const bang = document.getElementById("bang");
-  const crowd = document.getElementById("crowd");
   const playedSet = new Set();
 
   audioIds.forEach((id) => {
     const audio = document.getElementById(id);
     if (audio) {
-      audio.volume = 0;
       audio.play().then(() => {
         audio.pause();
         audio.currentTime = 0;
-        audio.volume = 0.5;
       }).catch((err) => {
         console.warn(`Failed to warm up ${id}:`, err);
       });
