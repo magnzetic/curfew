@@ -10,14 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   startBtn.addEventListener("click", () => {
-    document.querySelectorAll("audio").forEach(audio => {
-      audio.muted = true;
-      audio.loop = true;
-      audio.play().then(() => audio.pause());
-    });
     triggerOverlay.classList.add("hidden");
     startStory();
   });
+});
+
+
 
 function fadeVolume(audio, targetVolume, duration = 1000) {
   const steps = 20;
@@ -192,6 +190,19 @@ function startStory() {
       if (entry.audio) p.setAttribute("data-autoplay", entry.audio);
       if (entry.dataDarkMode) p.setAttribute("data-darkmode", "true");
       if (entry.dataLightMode) p.setAttribute("data-lightmode", "true");
+
+      if (entry.audio) {
+        p.addEventListener("touchstart", () => {
+          const audioEl = document.getElementById(entry.audio);
+          if (audioEl && !playedSet.has(entry.audio)) {
+            // Optional: volume override
+            const customVolume = parseFloat(p.getAttribute("data-volume")) || audioEl.volume;
+            audioEl.volume = customVolume;
+            audioEl.play();
+            playedSet.add(entry.audio);
+          }
+        });
+      }
   
       storyContainer.appendChild(p);
     });
