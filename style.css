@@ -4,10 +4,9 @@ body {
   background: linear-gradient(to bottom, #ffffff, #bfbfbf);
   color: #000000;
   transition: background 2s ease;
-  padding: 0.8rem;
+  padding: 2rem;
   min-height: 100vh;
   overflow-x: hidden;
-  font-size: 12pt;
 }
 
 .story-container {
@@ -15,8 +14,8 @@ body {
   margin: 0 auto;
   backdrop-filter: blur(15px);
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  padding: 1.5rem;
+  border-radius: 20px;
+  padding: 2rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
   border: 1px solid rgba(255, 255, 255, 0.18);
   text-align: justify;
@@ -127,3 +126,4 @@ body {
   body.dark-mode .story-paragraph {
     color: #cccccc;
   }
+  
