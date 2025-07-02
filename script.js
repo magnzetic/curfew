@@ -45,22 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-function isMobile() {
-  return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-}
-
 function fadeVolume(audio, targetVolume, duration = 1000) {
-
-  if (isMobile()) {
-    if (targetVolume <= 0.05) {
-      audio.muted = true;
-    } else {
-      audio.muted = false;
-      audio.volume = Math.max(0.1, targetVolume);
-    }
-    return;
-  }
-
   const steps = 20;
   const stepTime = duration / steps;
   const startVolume = audio.volume;
@@ -129,7 +114,7 @@ function startStory(audioMap) {
       { text: ".", align: "center" },
       { text: "." , align: "center"},
       { text: "Sesudah helaan napas panjang diembuskan secara kasar, Nanami berjalan menjauh dari pintu kamar Akiko. Derap kakinya menuruni tangga, meninggalkan Akiko sendirian yang terdiam di kamarnya. Pintu jati dengan lakban yang menutupi segala celah—bahkan ventilasi udara—membatasi pendengaran Akiko terhadap suara-suara di lantai bawah. Meski masih tinggal di satu rumah yang sama, Akiko merasa ayahnya lebih sulit digapai daripada ibunya.", audio: "downstair" },
-      { text: "Netra cokelat Akiko menyorot layar laptopnya, menampilkan seorang <i>streamer</i> dan rekaman layar permainannya dengan ikon jeda di bagian tengah layar. Seketika, tontonan santai itu tak lagi menarik untuk Akiko. Tidak di saat ia terpikir untuk tinggal bersama ibunya, selamanya.", isHTML: true},
+      { text: "Netra cokelat Akiko menyorot layar laptopnya, menampilkan seorang streamer dan rekaman layar permainannya dengan ikon jeda di bagian tengah layar. Seketika, tontonan santai itu tak lagi menarik untuk Akiko. Tidak di saat ia terpikir untuk tinggal bersama ibunya, selamanya."},
       { text: "Tanpa menghiraukan perbuatannya mungkin bersifat merusak, Akiko menutup layar laptop dengan gerakan membanting. Satu tangannya dengan sigap meraih sakelar lampu di dinding, menggelapkan ruangan itu hingga Akiko merasa sesak setiap ia menarik napas.", audio: "switches", dataDarkMode: true  },
       { text: "Akiko menarik selimut untuk menghangatkan tubuhnya yang berbaring di sisi kanan. Kedua tangannya meremas ujung selimut yang berjumbai, beriringan dengan kedua matanya yang tertutup rapat. Entah matanya sudah tertutup atau masih terbuka, keduanya sama saja bila kamarnya gulita.", audio: "blanket"},
       { text: "Dalam hatinya, Akiko berdoa, \"semoga, aku segera jatuh ke alam mimpi. Semoga, aku bisa melihat wajah ibuku lagi. Namun, semoga, aku tidak mendapatkan mimpi buruk itu lagi. Kalau aku memimpikan kecelakaan itu, semoga aku juga ikut mati.\""},
